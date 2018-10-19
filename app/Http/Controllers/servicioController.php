@@ -149,6 +149,8 @@ class servicioController extends Controller
     {
         // die(dd($request));
 
+        
+
         $perfil = DB::table('users')->select('id', 'name', 'tipo_documento', 'numero_doc', 'telefono', 'email', 'created_at', 'estado', 'tipo_usuario')->where('id',Auth::user()->id)->get();
 
         if($request->isMethod('post')){
