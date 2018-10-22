@@ -3,14 +3,14 @@
 @section('content')
 
 
-Servicio Creación de empresa (formulario):
+
 
 
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Hola  {{ Auth::user()->name }} Bienvenido a tu Cuenta Deleyes</div>
+                <div class="panel-heading">Hola  {{ Auth::user()->name }} Bienvenido a tu Cuenta Deleyes Servicio Creación de empresa (formulario):</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -29,29 +29,34 @@ Servicio Creación de empresa (formulario):
                      <form method="POST" class="form-horizontal">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}"></input>  {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('fecha') ? ' has-error' : '' }}">
-                            <label for="fecha" class="col-md-4 control-label"> Nombre empresa</label>
+                        <div class="form-group{{ $errors->has('nombre_empresa') ? ' has-error' : '' }}">
+                            <label for="nombre_empresa" class="col-md-4 control-label"> Nombre empresa</label>
 
                             <div class="col-md-6">
-                                <input id="fecha" type="text" class="form-control" name="nombre_empresa" value="{{ old('fecha') }}" required autofocus>
+                                <input id="nombre_empresa" type="text" class="form-control" name="nombre_empresa" value="{{ old('nombre_empresa') }}" required autofocus>
 
-                                @if ($errors->has('fecha'))
+                                @if ($errors->has('nombre_empresa'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('fecha') }}</strong>
+                                        <strong>{{ $errors->first('nombre_empresa') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
-                            <label for="descripcion" class="col-md-4 control-label">Tipo de empresa</label>
+                        <div class="form-group{{ $errors->has('tipo_empresa') ? ' has-error' : '' }}">
+                            <label for="tipo_empresa" class="col-md-4 control-label">Tipo de empresa</label>
 
                             <div class="col-md-6">
-                                <input id="descripcion" type="text" class="form-control" name="tipo_empresa" value="{{ old('descripcion') }}" required autofocus>
+                                <select id="tipo_empresa" type="text" class="form-control" name="tipo_empresa" value="{{ old('tipo_empresa') }}" required autofocus>
+                                	<option></option>
+                                	<option value="SA">SA</option>
+                                	<option value="SAS">SAS</option>
+                                	<option value="LTDA">LTDA</option>
+                                </select>
 
-                                @if ($errors->has('descripcion'))
+                                @if ($errors->has('tipo_empresa'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('descripcion') }}</strong>
+                                        <strong>{{ $errors->first('tipo_empresa') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -69,8 +74,6 @@ Servicio Creación de empresa (formulario):
                                 @endif
                             </div>
                         </div>
-
-
 
                         <div class="form-group{{ $errors->has('cantidad_capital') ? ' has-error' : '' }}">
                             <label for="departamento" class="col-md-4 control-label">Cantidad de capital ($)</label>
@@ -116,7 +119,6 @@ Servicio Creación de empresa (formulario):
                         </div>
 
                     
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

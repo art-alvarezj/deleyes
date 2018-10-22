@@ -28,7 +28,7 @@
                         </a>
                      @elseif (Auth::user()->estado == 'activo' && Auth::user()->tipo_usuario == 'cliente')  
                      Dashboard Cliente :
-                        <a href="{{ url('/extractos') }}">
+                        <a href="{{ url('/creacionempresa') }}">
                         <button type="button" class="btn btn-warning">Servicio Creación de empresa</button>
                         </a>
                         <a href="{{ url('/datacredito') }}">

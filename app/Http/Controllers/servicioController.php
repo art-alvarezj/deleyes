@@ -106,41 +106,41 @@ class servicioController extends Controller
 
  public function creacionempresa(Request $request )
     {
-        // die(dd($request));
-
         $perfil = DB::table('users')->select('id', 'name', 'tipo_documento', 'numero_doc', 'telefono', 'email', 'created_at', 'estado', 'tipo_usuario')->where('id',Auth::user()->id)->get();
 
         if($request->isMethod('post')){
 
           //
-          $id = request()->id;
-          $perfil = request()->perfil;
-          $estado = request()->estado;
+          //$fecha = request()->fecha;
+          $nombre_empresa = request()->nombre_empresa;
+          $tipo_empresa = request()->tipo_empresa;
+          $numero_accionistas = request()->numero_accionistas;
+          $cantidad_capital = request()->cantidad_capital;
+          $departamento = request()->departamento;
+          $ciudad = request()->ciudad;
 
           //dd($id);
-          $user = User::find($id);
-          $user->id = $id;
-          $user->tipo_usuario = $perfil;
-          $user->estado = $estado;
-          $user->save();
+        
 
-            $cliente = new cliente();
-            $perfil = DB::table('users')->select('id', 'name', 'tipo_documento', 'numero_doc')->where('id',$id)->get();
-            $siExisteCliente = DB::table('clientes')->select('id')->where('cedula','=',''.$perfil[0]->numero_doc.'')->first();
-            if (!empty($siExisteCliente)) {
-            $cliente = $cliente->find($siExisteCliente->id);
-            }
-
-            $cliente->nombre  = $perfil[0]->name;
-            $cliente->tipo_doc = $perfil[0]->tipo_documento;
-            $cliente->cedula = $perfil[0]->numero_doc;
-            $cliente->save();
-
+           $servicio = new servicio();
+    
+            
+            $servicio->nombre_empresa = $nombre_empresa;
+            $servicio->tipo_empresa = $tipo_empresa;
+            $servicio->numero_accionistas = $numero_accionistas;
+            $servicio->cantidad_capital = $cantidad_capital;
+            $servicio->departamento = $departamento;
+            $servicio->ciudad = $ciudad;
+            //$servicio->suceso = $descripcion;
+            //$servicio->soportes =  $soporte;
+            //$servicio->fecha = $fecha;
+            $servicio->tipo_servicio = 'CreacionEmpresa';
+            $servicio->save();
           
           return redirect('home');
        }
     
-        return view('creacionempresa', compact('perfil'));
+        return view('crearempresa', compact('perfil'));
     }
 
 
@@ -168,10 +168,10 @@ class servicioController extends Controller
            $servicio = new servicio();
     
             
-            //$servicio->nombre_empresa = ;
-            //$servicio->tipo_empresa = ;
-            //$servicio->numero_accionistas = ;
-           // $servicio->cantidad_capital = ;
+        //$servicio->nombre_empresa = ;
+        //$servicio->tipo_empresa = ;
+        //$servicio->numero_accionistas = ;
+        // $servicio->cantidad_capital = ;
             $servicio->departamento = $departamento;
             $servicio->ciudad = $ciudad;
             $servicio->suceso = $descripcion;
